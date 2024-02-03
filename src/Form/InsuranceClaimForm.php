@@ -113,10 +113,8 @@ final class InsuranceClaimForm extends FormBase
       'status' => 1,
     ]);
 
-    // echo $form_state->getValue('submission_date');
     $current_time = \Drupal::time()->getCurrentTime();
     $date_output = date('Y-m-d\TH:i:s', $current_time); 
-    // echo "date_output:".$date_output;
 
     $node->field_claims_number->value = $form_state->getValue('claim_number');
     $node->field_claims_value->value = $form_state->getValue('claim_value');

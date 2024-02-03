@@ -3,6 +3,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\ReplaceCommand;
+use Drupal\node\Entity\Node;
 
 /**
  * @file
@@ -21,4 +22,41 @@ function insurance_claims_form_alter(&$form, FormStateInterface $form_state, $fo
     }else if($form_id == 'node_insurance_claims_edit_form'){
         $form['field_claims_number']['#disabled'] = TRUE;
     }
+}
+
+/**
+ * 
+ */
+function insurance_claims_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id){
+    //Convert the textfield to a dropdown in view exposed filter
+    if ($form['#id'] == 'views-exposed-form-submitted-claims-page-1') {    
+        $query = \Drupal::entityQuery('node');
+        $query->condition('type','insurance_claims');
+        $query->accessCheck(TRUE);
+        $nids = $query->execute();
+        
+        $nodes = Node::loadMultiple($nids);
+        $options = ['' => 'All'];
+        foreach($nodes as $nid => $node) {
+          $value = $node->get('field_patient_name')->getString();
+          if (isset($value)) {
+            $options[$value] = $value;
+          }
+        }
+        if (isset($form['field_patient_name_value'])) {
+            $form['field_patient_name_value'] = array(
+                '#type' => 'select',  
+                '#options' => $options,
+                '#title' => t('Patient Name'),
+            );
+        }
+        //Autocomplete field_claims_number field
+        if (isset($form['field_claims_number_value'])) {
+            $form['field_claims_number_value'] = [
+                '#type' => 'textfield',
+                '#title' => t('Claims Number'),
+                '#autocomplete_route_name' => 'insurance_claims.claim_no_autocomplete',
+              ];
+        }
+      }
 }
