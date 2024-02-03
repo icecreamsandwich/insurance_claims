@@ -1,0 +1,5 @@
+name: 'insurance_claims'
+type: module
+description: 'Submit and list the insurance claims submitted by clients'
+package: Custom
+core_version_requirement: ^10

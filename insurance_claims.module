@@ -1,0 +1,24 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ReplaceCommand;
+
+/**
+ * @file
+ * Primary module hooks for insurance_claims module.
+ */
+
+
+/**
+ * Implements hook_form_alter() on behalf of mymodule.module.
+ */
+function insurance_claims_form_alter(&$form, FormStateInterface $form_state, $form_id){
+    if ($form_id == 'node_insurance_claims_form') {
+        $auto_gen_number  = rand(100000000, 999999999);
+        $form['field_claims_number']['widget'][0]['value']['#default_value'] = $auto_gen_number;
+        $form['field_claims_number']['#disabled'] = TRUE;
+    }else if($form_id == 'node_insurance_claims_edit_form'){
+        $form['field_claims_number']['#disabled'] = TRUE;
+    }
+}

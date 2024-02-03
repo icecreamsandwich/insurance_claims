@@ -1,0 +1,6 @@
+insurance_claims.node_add:
+  title: Add new insurance
+  description: Add new insurance claim
+  route_name: insurance_claims.add_claim
+  weight: 10
+  parent: system.admin_config_ui

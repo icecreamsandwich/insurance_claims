@@ -1,0 +1,10 @@
+insurance_claims.add_claim:
+  title: Submit claims
+  route_name: insurance_claims.add_claim
+  base_route: insurance_claims.add_claim
+  weight: 100
+insurance_claims.view_claim:
+  title: View claims
+  route_name: insurance_claims.view_claim
+  base_route: insurance_claims.add_claim
+  weight: 200

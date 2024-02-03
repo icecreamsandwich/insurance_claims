@@ -1,0 +1,15 @@
+insurance_claims.add_claim:
+  path: '/insurance-claims'
+  defaults:
+    _title: 'Submit claims'
+    _form: 'Drupal\insurance_claims\Form\InsuranceClaimForm'
+  requirements:
+    _permission: 'access content'
+
+insurance_claims.view_claim:
+  path: '/insurance-claims/view-claims'
+  defaults:
+    _title: 'View claims'
+    _controller: '\Drupal\insurance_claims\Controller\InsuranceClaimsController:show_claims'
+  requirements:
+    _permission: 'access content'
