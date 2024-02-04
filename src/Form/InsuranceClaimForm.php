@@ -66,6 +66,7 @@ final class InsuranceClaimForm extends FormBase
       '#title' => $this->t('Submission Date'),
       '#date_date_format' => 'Y-m-d\TH:i:s',
       '#default_value' => $date_output,
+      '#attributes' => ['style' => 'width:250px;'],
     ];
 
     $form['actions'] = [
