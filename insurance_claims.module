@@ -15,6 +15,7 @@ use Drupal\node\Entity\Node;
  * Implements hook_form_alter() on behalf of mymodule.module.
  */
 function insurance_claims_form_alter(&$form, FormStateInterface $form_state, $form_id){
+    // Not used now. Managed this via InsuranceClaimForm 
     if ($form_id == 'node_insurance_claims_form') {
         $auto_gen_number  = rand(100000000, 999999999);
         $form['field_claims_number']['widget'][0]['value']['#default_value'] = $auto_gen_number;

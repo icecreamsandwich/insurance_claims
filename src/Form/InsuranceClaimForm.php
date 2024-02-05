@@ -19,7 +19,7 @@ final class InsuranceClaimForm extends FormBase
    */
   public function getFormId(): string
   {
-    return 'insurance_claims_example';
+    return 'insurance_claim_form';
   }
 
   /**
@@ -86,7 +86,6 @@ final class InsuranceClaimForm extends FormBase
   {
     // Validations.
     $patient_name = $form_state->getValue('patient_name');
-    $claim_value = str_replace(',', '', $form_state->getValue('claim_value'));
     if (!preg_match('/^[a-zA-Z\.\s]+$/', $patient_name)) {
       $form_state->setErrorByName(
         'patient_name',
@@ -94,6 +93,7 @@ final class InsuranceClaimForm extends FormBase
       );    
     }
     //Claim value validation
+    $claim_value = str_replace(',', '', $form_state->getValue('claim_value'));
     if (!is_numeric($claim_value) || floatval($claim_value) != $claim_value) {
       $form_state->setErrorByName(
         'claim_value', 
@@ -124,6 +124,6 @@ final class InsuranceClaimForm extends FormBase
     $node->field_service_type->value = $form_state->getValue('service_type');
     $node->field_submission_date->value = $form_state->getValue('submission_date') ?? $date_output;
     $node->save();
-    $this->messenger()->addStatus($this->t('Insurance claim @claim has been submitted', ["@claim" => $claim_number]));
+    $this->messenger()->addStatus($this->t('Insurance claim @claim_no has been submitted', ["@claim_no" => $claim_number]));
   }
 }
