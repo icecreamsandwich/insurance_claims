@@ -14,7 +14,11 @@ Insurance Claims Custom Entity- adding and listing and Mangaged by view and filt
 
 ## Screenshots
 
+### Submit Claim
 ![Alt text](4.png)
+### Claim number autocomplete
 ![Alt text](1.png)
+### Patient Name dropdown
 ![Alt text](2.png)
+### Pagination and xls export
 ![Alt text](3.png)
